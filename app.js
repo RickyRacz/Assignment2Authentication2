@@ -55,6 +55,21 @@ app.post('/login', (req, res) => {
   // Handle login authentication
 });
 
+app.post('/login', (req, res) => {
+  const { username, password } = req.body;
+
+  // Check if the entered username and password match the required credentials
+  if (username === 'admin' && password === 'password') {
+    // Successful login
+    req.session.authenticated = true; // Set the session authenticated flag
+    res.redirect('/contacts'); // Redirect to the secure area (e.g., contacts page)
+  } else {
+    // Invalid credentials
+    res.redirect('/login'); // Redirect back to the login page for another attempt
+  }
+});
+
+
 // Business Contacts List View
 app.get('/contacts', (req, res) => {
   // Fetch contacts from the database and render the contacts view
