@@ -4,3 +4,8 @@ npm install
 npm install mongodb
 npm install mongoose
 npm install express-session
+npm start
+
+
+username: admin
+password: password
