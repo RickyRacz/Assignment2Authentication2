@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Contacts</title>
+  <link rel="stylesheet" href="/styles.css">
+</head>
+<body>
+  <h1>Business Contacts</h1>
+  <table>
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Phone</th>
+        <th>Email</th>
+        <th>Action</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% contacts.forEach((contact) => { %>
+        <tr>
+          <td><%= contact.name %></td>
+          <td><%= contact.phone %></td>
+          <td><%= contact.email %></td>
+          <td>
+            <a href="/contacts/<%= contact._id %>/update">Update</a>
+            <form action="/contacts/<%= contact._id %>/delete" method="POST" style="display:inline;">
+              <button type="submit">Delete</button>
+            </form>
+          </td>
+        </tr>
+      <% }); %>
+    </tbody>
+  </table>
+</body>
+</html>

@@ -1,0 +1,87 @@
+/* Add styles for the navigation bar */
+nav {
+    background-color: #333;
+    height: 50px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 20px;
+  }
+  
+  nav a {
+    color: #fff;
+    text-decoration: none;
+    margin-right: 20px;
+  }
+  
+  /* Add styles for the welcome section */
+  .welcome-section {
+    background-image: url('/images/background.jpg');
+    background-size: cover;
+    background-position: center;
+    height: 500px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: #fff;
+    text-align: center;
+  }
+  
+  .welcome-section h1 {
+    font-size: 36px;
+    margin-bottom: 20px;
+  }
+  
+  /* Add styles for the projects section */
+  .projects-section {
+    padding: 50px 0;
+  }
+  
+  .projects-section .project {
+    margin-bottom: 40px;
+  }
+  
+  .projects-section .project img {
+    width: 100%;
+    height: auto;
+  }
+  
+  .projects-section .project h3 {
+    font-size: 24px;
+    margin-bottom: 10px;
+  }
+  
+  .projects-section .project p {
+    margin-bottom: 0;
+  }
+  
+  /* Add styles for the contact form */
+  .contact-form {
+    max-width: 500px;
+    margin: 0 auto;
+  }
+  
+  .contact-form label {
+    display: block;
+    margin-bottom: 10px;
+  }
+  
+  .contact-form input,
+  .contact-form textarea {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 20px;
+  }
+  
+  .contact-form button {
+    background-color: #333;
+    color: #fff;
+    padding: 10px 20px;
+    border: none;
+    cursor: pointer;
+  }
+  
+  .contact-form button:hover {
+    background-color: #555;
+  }
+  

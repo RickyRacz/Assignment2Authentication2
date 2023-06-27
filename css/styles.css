@@ -1,0 +1,22 @@
+body {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  background-color: lightcoral;
+  color: white;
+}
+
+h1 {
+  text-align: center;
+  font-size: 24px;
+}
+
+p {
+  text-align: center;
+}
+
+a {
+  color: white;
+  text-decoration: none;
+}
