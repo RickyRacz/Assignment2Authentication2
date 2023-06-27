@@ -1,5 +1,5 @@
 # Assignment2Authentication2
-Run the following commands in the terminal
+To run this code locally, do the following commands in the terminal.
 npm install
 npm install mongodb
 npm install mongoose
