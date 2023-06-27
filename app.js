@@ -8,6 +8,7 @@ const mongoose = require('mongoose');
 
 // Set the view engine to EJS
 app.set('view engine', 'ejs');
+app.set('views', path.join(__dirname, 'views'));
 
 // Define the static files directory
 app.use(express.static('public'));
@@ -41,18 +42,12 @@ const userSchema = new mongoose.Schema({
 const User = mongoose.model('User', userSchema);
 
 // Define routes
-// Login View
-app.get('/login', (req, res) => {
-  res.render('login');
-});
-
 app.get('/', (req, res) => {
   res.redirect('/login'); // Redirect to the login page
 });
 
-
-app.post('/login', (req, res) => {
-  // Handle login authentication
+app.get('/login', (req, res) => {
+  res.render('login');
 });
 
 app.post('/login', (req, res) => {
@@ -62,100 +57,73 @@ app.post('/login', (req, res) => {
   if (username === 'admin' && password === 'password') {
     // Successful login
     req.session.authenticated = true; // Set the session authenticated flag
-    res.redirect('/contacts'); // Redirect to the secure area (e.g., contacts page)
+    res.redirect('/home'); // Redirect to the home page after successful login
   } else {
     // Invalid credentials
     res.redirect('/login'); // Redirect back to the login page for another attempt
   }
 });
 
-
-// Business Contacts List View
-app.get('/contacts', (req, res) => {
-  // Fetch contacts from the database and render the contacts view
-});
-
-// Update View
-app.get('/contacts/:id/update', (req, res) => {
-  // Fetch contact details from the database and render the update view
-});
-
-app.post('/contacts/:id/update', (req, res) => {
-  // Update contact details in the database and redirect to the contacts view
-});
-
-app.post('/contacts/:id/delete', (req, res) => {
-  // Delete the contact from the database and redirect to the contacts view
-});
-
-app.get('/', (req, res) => {
-  res.render('home');
+app.get('/home', (req, res) => {
+  if (req.session.authenticated) {
+    res.render('home');
+  } else {
+    res.redirect('/login'); // Redirect to the login page if user is not authenticated
+  }
 });
 
 app.get('/about', (req, res) => {
-  res.render('about');
+  if (req.session.authenticated) {
+    res.render('about');
+  } else {
+    res.redirect('/login'); // Redirect to the login page if user is not authenticated
+  }
 });
 
 app.get('/contact', (req, res) => {
-  res.render('contact');
+  if (req.session.authenticated) {
+    res.render('contact');
+  } else {
+    res.redirect('/login'); // Redirect to the login page if user is not authenticated
+  }
 });
 
 app.get('/projects', (req, res) => {
-  res.render('projects');
+  if (req.session.authenticated) {
+    res.render('projects');
+  } else {
+    res.redirect('/login'); // Redirect to the login page if user is not authenticated
+  }
 });
 
 app.get('/services', (req, res) => {
-  res.render('services');
-});
-
-app.get('/', (req, res) => {
   if (req.session.authenticated) {
-    // User is authenticated, render the home view
+    res.render('services');
   } else {
-    // User is not authenticated, redirect to the login view
-    res.redirect('/login');
-  }
-});
-
-app.get('/', (req, res) => {
-  if (req.isAuthenticated()) {
-    res.redirect('/contacts'); // Redirect to the secure area
-  } else {
-    res.redirect('/login'); // Redirect to the login page
-  }
-});
-
-
-app.get('/about', (req, res) => {
-  if (req.session.authenticated) {
-    // User is authenticated, render the about view
-  } else {
-    // User is not authenticated, redirect to the login view
-    res.redirect('/login');
+    res.redirect('/login'); // Redirect to the login page if user is not authenticated
   }
 });
 
 app.get('/contacts', (req, res) => {
-  // Retrieve contacts from the database
-  const contacts = [
-    // Sample contact data
-    { name: 'John Doe', phone: '123456789', email: 'john@example.com' },
-    { name: 'Jane Smith', phone: '987654321', email: 'jane@example.com' },
-    // Add more contacts as needed
-  ];
+  if (req.session.authenticated) {
+    // Retrieve contacts from the database
+    const contacts = [
+      // Sample contact data
+      { name: 'John Cena', phone: '123456789', email: 'john@example.com' },
+      { name: 'Jane Smith', phone: '987654321', email: 'jane@example.com' },
+      // Add more contacts as needed
+    ];
 
-  res.render('contacts', { contacts });
+    res.render('contacts', { contacts });
+  } else {
+    res.redirect('/login'); // Redirect to the login page if user is not authenticated
+  }
 });
 
-
 // Similarly update other route handlers as needed
-
 
 // Start the server
 const port = process.env.PORT || 3000;
 app.listen(port, () => {
   console.log(`Server started on port ${port}`);
 });
-
-app.set('views', path.join(__dirname, 'views'));
-app.set('view engine', 'ejs');
